@@ -156,6 +156,29 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
+        <Button
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:id="@+id/mn"
+            android:text="@string/fa_bars"
+            android:textSize="26dp"
+            android:onClick="mn"
+            android:textColor="#014a7e"
+            android:clickable="true"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
     </RelativeLayout>
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="272dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="#013356"
+        android:choiceMode="singleChoice"
+        android:animateLayoutChanges="true"
+        android:layout_marginTop="105dp" />
 </android.support.v4.widget.DrawerLayout>
 

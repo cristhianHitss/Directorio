@@ -9,9 +9,15 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/action_add"
-        android:icon="@android:drawable/ic_popup_sync"
+        android:orderInCategory="100"
+        android:title="Actualizar"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sach"
+        android:icon="@mipmap/ic_search"
         android:orderInCategory="1"
-        android:title="@string/update"
-        app:showAsAction="ifRoom" />
+        android:title="Buscar"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
 
 </menu>

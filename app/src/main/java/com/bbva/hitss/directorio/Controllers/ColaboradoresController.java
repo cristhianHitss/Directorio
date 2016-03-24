@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -34,12 +37,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColaboradoresController extends AppCompatActivity {
+public class ColaboradoresController extends AppCompatActivity implements SearchView.OnQueryTextListener {
     private ProgressBar bg_loader;
     Snackbar snackbar;
     private RecyclerView recycler;
     private LinearLayoutManager lManager;
     private CollapsingToolbarLayout collapser;
+    List<ColaboradorModel> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,7 @@ public class ColaboradoresController extends AppCompatActivity {
     }
 
     private void processJson(JSONObject object) {
-        List<ColaboradorModel> items = new ArrayList<>();
+        items = new ArrayList<>();
         try {
             JSONArray rows = object.getJSONArray("rows");
             for (int r = 0; r < rows.length(); ++r) {
@@ -119,6 +123,22 @@ public class ColaboradoresController extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.detail, menu);
+        final MenuItem item = menu.findItem(R.id.sach);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+        MenuItemCompat.setOnActionExpandListener(item,
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        return true;
+                    }
+                });
+
         return true;
     }
 
@@ -159,5 +179,33 @@ public class ColaboradoresController extends AppCompatActivity {
                     }
                 });
         snackbar.show();
+    }
+
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        final List<ColaboradorModel> filteredModelList = filter(items, newText);
+        ColaboradoresAdapter adaptador = new ColaboradoresAdapter(this, new ArrayList<>(filteredModelList));
+        recycler.setAdapter(adaptador);
+
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    private List<ColaboradorModel> filter(List<ColaboradorModel> models, String query) {
+        query = query.toLowerCase();
+
+        final List<ColaboradorModel> filteredModelList = new ArrayList<>();
+        for (ColaboradorModel model : models) {
+            final String text = model.getName().toLowerCase() + " " + model.getApellido_paterno() + "" + model.getApelido_materno();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
 }

@@ -26,7 +26,7 @@ public class LoadingController extends AppCompatActivity {
 
                 try {
                     // Thread que dormira (sleep) por 3 segundos
-                    sleep(3 * 1000);
+                    sleep(2 * 1000);
 
                     // Despues de 5 segundos se redirigira a otro intent
                     String status = manager.getPreferences(LoadingController.this, "status");

@@ -66,7 +66,7 @@ public class ColaboradoresAdapter extends RecyclerView.Adapter<ColaboradoresAdap
     @Override
     public void onBindViewHolder(SimpleViewHolder viewHolder, int i) {
         ColaboradorModel currentItem = items.get(i);
-        viewHolder.nombre.setText(Html.fromHtml("<font color=\"blue\">"+currentItem.getName() + " " +currentItem.getApellido_paterno() +" "+currentItem.getApelido_materno()+"</font><br><font color=\"gray\">" + currentItem.getPerfil()+"</font>"));
+        viewHolder.nombre.setText(Html.fromHtml("<font color=\"#013356\">"+currentItem.getName() + " " +currentItem.getApellido_paterno() +" "+currentItem.getApelido_materno()+"</font><br><font color=\"gray\">" + currentItem.getPerfil()+"</font>"));
         Glide.with(viewHolder.avatar.getContext())
                 .load(currentItem.getIdDrawable())
                 .centerCrop()
@@ -84,6 +84,8 @@ public class ColaboradoresAdapter extends RecyclerView.Adapter<ColaboradoresAdap
         DetalleColaboradorController.createInstance(
                 (Activity) context, items.get(position));
     }
+
+
 }
 
 interface ItemClickListener {
