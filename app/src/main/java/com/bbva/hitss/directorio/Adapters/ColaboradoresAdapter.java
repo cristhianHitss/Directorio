@@ -13,7 +13,6 @@ import com.bbva.hitss.directorio.Controllers.DetalleColaboradorController;
 import com.bbva.hitss.directorio.Models.ColaboradorModel;
 import com.bbva.hitss.directorio.Utils.Utils;
 import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 
@@ -84,8 +83,6 @@ public class ColaboradoresAdapter extends RecyclerView.Adapter<ColaboradoresAdap
         DetalleColaboradorController.createInstance(
                 (Activity) context, items.get(position));
     }
-
-
 }
 
 interface ItemClickListener {

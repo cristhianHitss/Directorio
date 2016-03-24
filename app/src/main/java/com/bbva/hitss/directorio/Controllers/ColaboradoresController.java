@@ -198,10 +198,9 @@ public class ColaboradoresController extends AppCompatActivity implements Search
 
     private List<ColaboradorModel> filter(List<ColaboradorModel> models, String query) {
         query = query.toLowerCase();
-
         final List<ColaboradorModel> filteredModelList = new ArrayList<>();
         for (ColaboradorModel model : models) {
-            final String text = model.getName().toLowerCase() + " " + model.getApellido_paterno() + "" + model.getApelido_materno();
+            final String text = model.getName().toLowerCase() + " " + model.getApellido_paterno().toLowerCase() + "" + model.getApelido_materno().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(model);
             }

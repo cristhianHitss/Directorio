@@ -23,7 +23,7 @@ public class Init extends AppCompatActivity {
     Snackbar snackbar;
     DrawerLayout drawerLayout;
     ListView listView;
-    String[] opciones = {"Configuracion", "Desarrolladores","Contacto", "Acerca de","Salir"};
+    String[] opciones = {"Configuracion", "Desarrolladores", "Contacto", "Acerca de", "Salir"};
     Button button;
     Button button2;
     Button button3;
@@ -47,17 +47,16 @@ public class Init extends AppCompatActivity {
         Utils.getTypeFace(mn, getAssets());
         listView = (ListView) findViewById(R.id.list_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         listView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.item_view_menu, R.id.txt,
                 opciones));
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-
+                if (arg2 == 4) {
+                    System.exit(0);
+                }
                 Toast.makeText(Init.this, "Item: " + opciones[arg2],
                         Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawers();
@@ -97,7 +96,6 @@ public class Init extends AppCompatActivity {
                     });
             snackbar.show();
         }
-
     }
 
     @Override

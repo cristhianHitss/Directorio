@@ -30,7 +30,6 @@ public class UIUtils {
         //LayoutInflater inflater = parent.getLayoutInflater();
         //View dialogView = inflater.bind(R.layout.dialog_list, null);
         //builderSingle.setView(dialogView);
-        builderSingle.setIcon(R.drawable.ic_launcher);
         builderSingle.setTitle(title);
         if (message != null) builderSingle.setMessage(message);
 
@@ -66,7 +65,6 @@ public class UIUtils {
 
             }
         });
-
         return builderSingle;
     }
 
