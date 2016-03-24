@@ -1,0 +1,132 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!-- Datos Colaborador -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/header_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#014a7e"
+        android:padding="6dip">
+
+        <TextView
+            android:id="@+id/r_hdr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Informacion Extra"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/list_titleb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="Bancomer Movil"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/list_descb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_titleb"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="14dp"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="Proyecto Asignado"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text= "Distribuido"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/list_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_title"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="14dp"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="Expertise"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#014a7e"
+        android:clickable="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/list_titlec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text= "Francisco Zenon Barragan"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/list_descc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_titlec"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="14dp"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="Coordinador"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

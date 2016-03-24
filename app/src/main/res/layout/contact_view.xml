@@ -1,0 +1,276 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="25dp"
+    android:orientation="vertical">
+
+    <!-- Datos Colaborador -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/header_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#014a7e"
+        android:padding="6dip">
+
+        <TextView
+            android:id="@+id/r_hdr_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Telefonos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contentmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/make_call"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/list_avatarc"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_phone" />
+
+            <TextView
+                android:id="@+id/list_titlec"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_avatarc"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/list_descc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_titlec"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/list_avatarc"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="Celular Personal"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/send_whatsapp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignEnd="@+id/list_descc"
+                android:layout_alignRight="@+id/list_descc"
+                android:layout_alignTop="@+id/list_titlec"
+                android:src="@drawable/ic_whatsapp" />
+
+            <ImageView
+                android:id="@+id/send_message"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/send_whatsapp"
+                android:layout_toStartOf="@+id/send_whatsapp"
+                android:src="@drawable/ic_message" />
+        </RelativeLayout>
+
+        <include layout="@layout/divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/list_avatarcb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_deskphone" />
+
+            <TextView
+                android:id="@+id/list_titlecb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_avatarcb"
+                android:text="95765"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/list_desccb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_titlecb"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/list_avatarcb"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="Extension"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/header_containerv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#014a7e"
+        android:padding="6dip">
+
+        <TextView
+            android:id="@+id/r_hdr_titlve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="Correos"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contentphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center"
+            android:id="@+id/mail_work">
+
+            <ImageView
+                android:id="@+id/list_avatara"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_mail" />
+
+            <TextView
+                android:id="@+id/list_titlea"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_avatara"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="cristhianivan.contractor@bbva.com"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/list_desca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_titlea"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/list_avatara"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="Correo del Trabajo"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center"
+            android:id="@+id/mail_personal">
+
+            <ImageView
+                android:id="@+id/list_avatarb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_mail" />
+
+            <TextView
+                android:id="@+id/list_titleb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_avatarb"
+                android:text="ccastanedarivera@gmail.com"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/list_descb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_titleb"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/list_avatarb"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="Correo Personal"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

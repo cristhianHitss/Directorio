@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#014a7e</color>
+
+    <color name="colorPrimaryDark">#014a7e</color>
+    <color name="colorAccent">#015a99</color>
+    <color name="heather">#aeaeae</color>
+    <color name="btn">#f5f5f5</color>
+    <color name="whatsapp">#ff00536e</color>
+
+</resources>

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".hitss.directorio.Controllers.DetalleColaboradorController">
+    <!--<item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_hitss"
+        android:orderInCategory="1"
+        android:title="@string/update"
+        app:showAsAction="ifRoom" />-->
+
+</menu>
