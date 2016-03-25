@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.bbva.R;
-import com.bbva.hitss.directorio.init.Init;
+import com.bbva.hitss.directorio.init.MainApp;
 
 public class LoadingController extends AppCompatActivity {
     SessionController manager;
@@ -32,7 +32,7 @@ public class LoadingController extends AppCompatActivity {
                     String status = manager.getPreferences(LoadingController.this, "status");
                     Log.d("status", status);
                     if (status.equals("1")) {
-                        Intent i = new Intent(LoadingController.this, Init.class);
+                        Intent i = new Intent(LoadingController.this, MainApp.class);
                         startActivity(i);
                     } else {
                         Intent i = new Intent(LoadingController.this, LoginController.class);

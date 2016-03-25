@@ -16,20 +16,17 @@ public class ToastController {
     public final static int GRAVITY_CENTER = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
     public final static int GRAVITY_BOTTOM = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
 
-    // todo usar Object en lugar de string para mandarle una imagen
+
     public static void show(Context context, String[] from, int[] to, int toastLayout, int toastlength, int gravity) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customToastRoot = inflater.inflate(toastLayout, null);
-
         for (int i = 0; i < from.length; i++) {
             ((TextView) customToastRoot.findViewById(to[i])).setText(from[i]);
         }
-
         Toast customtoast = new Toast(context);
         customtoast.setView(customToastRoot);
         customtoast.setGravity(gravity, 0, 0);
         customtoast.setDuration(toastlength);
-
         customtoast.show();
     }
 

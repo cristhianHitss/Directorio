@@ -11,14 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.bbva.R;
 import com.bbva.hitss.directorio.Controllers.ColaboradoresController;
 import com.bbva.hitss.directorio.Controllers.SessionController;
 import com.bbva.hitss.directorio.Utils.Utils;
 
 
-public class Init extends AppCompatActivity {
+public class MainApp extends AppCompatActivity {
     SessionController manager;
     Snackbar snackbar;
     DrawerLayout drawerLayout;
@@ -48,7 +47,7 @@ public class Init extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.item_view_menu, R.id.txt,
+                R.layout.main_item_view, R.id.txt,
                 opciones));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,7 +56,7 @@ public class Init extends AppCompatActivity {
                 if (arg2 == 4) {
                     System.exit(0);
                 }
-                Toast.makeText(Init.this, "Item: " + opciones[arg2],
+                Toast.makeText(MainApp.this, "Item: " + opciones[arg2],
                         Toast.LENGTH_SHORT).show();
                 drawerLayout.closeDrawers();
             }
@@ -73,7 +72,7 @@ public class Init extends AppCompatActivity {
         });*/
     }
 
-    public void mn(View view) {
+    public void menu(View view) {
         if (drawerLayout.isDrawerOpen(listView)) {
             drawerLayout.closeDrawers();
         } else {
@@ -81,9 +80,9 @@ public class Init extends AppCompatActivity {
         }
     }
 
-    public void some(View view) {
+    public void colaboradores(View view) {
         if (Utils.isConnectedToInternet(getApplicationContext())) {
-            Intent intent = new Intent(Init.this, ColaboradoresController.class);
+            Intent intent = new Intent(MainApp.this, ColaboradoresController.class);
             startActivity(intent);
         } else {
             snackbar = Snackbar.make(view, "SIN CONEXION", Snackbar.LENGTH_SHORT)

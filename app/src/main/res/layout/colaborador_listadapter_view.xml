@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".hitss.directorio.Controllers.ColaboradoresController">
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,7 +26,5 @@
             android:dividerHeight="5dp"
             android:divider="@color/colorPrimary"/>
     </RelativeLayout>
-
-
 </android.support.v4.widget.DrawerLayout>
 

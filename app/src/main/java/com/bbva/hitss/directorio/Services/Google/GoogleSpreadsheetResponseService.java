@@ -1,4 +1,4 @@
-package com.bbva.hitss.directorio.Http.Handlers;
+package com.bbva.hitss.directorio.Services.Google;
 
 import android.os.AsyncTask;
 
@@ -17,12 +17,12 @@ import java.net.URL;
 /**
  * Created by Hitss on 10/03/2016.
  */
-public class GoogleSpreadsheetResponse extends AsyncTask<String, Void, String> {
+public class GoogleSpreadsheetResponseService extends AsyncTask<String, Void, String> {
 
     final String TIMEOUT = "No fue posible descargar el contenido de la pagina.";
-    AsyncResult callback;
+    AsyncResultService callback;
 
-    public GoogleSpreadsheetResponse(AsyncResult callback) {
+    public GoogleSpreadsheetResponseService(AsyncResultService callback) {
 
         this.callback = callback;
     }

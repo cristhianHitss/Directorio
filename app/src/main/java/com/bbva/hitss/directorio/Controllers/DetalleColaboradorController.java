@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import com.bbva.R;
 import com.bbva.hitss.directorio.Controllers.UI.ToastController;
-import com.bbva.hitss.directorio.Http.Handlers.AsyncResult;
-import com.bbva.hitss.directorio.Http.Handlers.GoogleSpreadsheetResponse;
-import com.bbva.hitss.directorio.Http.SQL.StatementsSQL;
+import com.bbva.hitss.directorio.Services.Google.AsyncResultService;
+import com.bbva.hitss.directorio.Services.Google.GoogleSpreadsheetResponseService;
+import com.bbva.hitss.directorio.Services.SpreadsheetDataService.Statements;
 import com.bbva.hitss.directorio.Models.ColaboradorModel;
 import com.bbva.hitss.directorio.Models.InternosModel;
 import com.bbva.hitss.directorio.Utils.PhoneUtils;
@@ -148,7 +148,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detallecolaborador_view);
+        setContentView(R.layout.colaborador_detalle_view);
         setToolbar();// Añadir action bar
         if (getSupportActionBar() != null) // Habilitar up button
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -177,7 +177,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     }
 
     public void getInternos() {
-        new GoogleSpreadsheetResponse(new AsyncResult() {
+        new GoogleSpreadsheetResponseService(new AsyncResultService() {
             @Override
             public void onResult(JSONObject object) {
                 if (object.toString().equalsIgnoreCase("{}")) {
@@ -189,7 +189,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
                     pgr_internos.setVisibility(View.INVISIBLE);
                 }
             }
-        }).execute(StatementsSQL.internosBBVA);
+        }).execute(Statements.internosBBVA);
     }
 
     private void processJson(JSONObject object) {

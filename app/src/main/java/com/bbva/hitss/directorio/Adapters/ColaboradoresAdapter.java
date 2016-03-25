@@ -58,7 +58,7 @@ public class ColaboradoresAdapter extends RecyclerView.Adapter<ColaboradoresAdap
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_colaboradores_view, viewGroup, false);
+                .inflate(R.layout.colaborador_item_view, viewGroup, false);
         return new SimpleViewHolder(v, this,context );
     }
 

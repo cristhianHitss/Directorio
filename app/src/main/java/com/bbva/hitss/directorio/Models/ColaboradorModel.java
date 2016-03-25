@@ -27,7 +27,7 @@ public class ColaboradorModel {
     private int segundo_nivel;
     private int tercer_nivel;
 
-    public ColaboradorModel(int id, int no_empleado, String name, String apellido_paterno, String apelido_materno, String usuarioxm, String correobbva, String edificio, String ubicacion, String area_laboral, String perfil, long celular_personal, String correo_personal, String proyecto_asignado, String expertise,int primer_nivel,int segundo_nivel, int tercer_nivel) {
+    public ColaboradorModel(int id, int no_empleado, String name, String apellido_paterno, String apelido_materno, String usuarioxm, String correobbva, String edificio, String ubicacion, String area_laboral, String perfil, long celular_personal, String correo_personal, String proyecto_asignado, String expertise, int primer_nivel, int segundo_nivel, int tercer_nivel) {
         this.setId(id);
         this.setNo_empleado(no_empleado);
         this.setPerfil(perfil);
@@ -47,6 +47,11 @@ public class ColaboradorModel {
         this.setSegundo_nivel(segundo_nivel);
         this.setTercer_nivel(tercer_nivel);
         this.idDrawable = getDrawable();
+    }
+
+    public ColaboradorModel(String name, int idDrawable) {
+        this.nombre = name;
+        this.idDrawable = idDrawable;
     }
 
     public int getPrimer_nivel() {
@@ -139,11 +144,6 @@ public class ColaboradorModel {
 
     private int idDrawable;
 
-    public ColaboradorModel(String name, int idDrawable) {
-        this.nombre = name;
-        this.idDrawable = idDrawable;
-    }
-
     public int getId() {
         return id;
     }
@@ -200,11 +200,6 @@ public class ColaboradorModel {
         return idDrawable;
     }
 
-    /**
-     * Asigna un drawable en forma aleatoria
-     *
-     * @return id del drawable
-     */
     private int getDrawable() {
         return R.drawable.ic_login_account;
     }

@@ -5,11 +5,10 @@
     <string name="update">Actualizar</string>
     <string name="title_activity_detail"> </string>
     <string name="whatsapp_package">com.whatsapp</string>
-
     <string name="op_cancel">Cancelar</string>
     <string name="op_ok">Aceptar</string>
-
     <string name="action_search">Buscar</string>
+
     <!--  FONT AWESOME -->
     <string name="fa_glass">&#xf000;</string>
     <string name="fa_music">&#xf001;</string>

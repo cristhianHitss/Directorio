@@ -156,7 +156,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@drawable/bg_hitss"
+                    android:background="@drawable/ic_background_hitss"
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -197,15 +197,15 @@
 
                     <include
                         android:id="@+id/infocontacto"
-                        layout="@layout/contact_view" />
+                        layout="@layout/colaborador_contacto_view" />
 
                     <include
                         android:id="@+id/matriz"
-                        layout="@layout/matriz_view" />
+                        layout="@layout/colaborador_matriz_view" />
 
                     <include
                         android:id="@+id/extrainfocontacto"
-                        layout="@layout/extrainfo_view" />
+                        layout="@layout/colaborador_extrainfo_view" />
                 </LinearLayout>
             </ScrollView>
         </android.support.design.widget.AppBarLayout>

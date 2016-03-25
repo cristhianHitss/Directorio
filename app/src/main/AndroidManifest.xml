@@ -50,7 +50,7 @@
                 android:value=".hitss.directorio.Controllers.ColaboradoresController" />
         </activity>
         <activity
-            android:name=".hitss.directorio.init.Init"
+            android:name=".hitss.directorio.init.MainApp"
             android:label="@string/title_activity_detail"></activity>
     </application>
 </manifest>

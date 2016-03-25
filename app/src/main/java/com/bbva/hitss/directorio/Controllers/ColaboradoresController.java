@@ -16,19 +16,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.bbva.R;
 import com.bbva.hitss.directorio.Adapters.ColaboradoresAdapter;
-import com.bbva.hitss.directorio.Http.Handlers.AsyncResult;
-import com.bbva.hitss.directorio.Http.Handlers.GoogleSpreadsheetResponse;
-import com.bbva.hitss.directorio.Http.SQL.StatementsSQL;
+import com.bbva.hitss.directorio.Services.Google.AsyncResultService;
+import com.bbva.hitss.directorio.Services.Google.GoogleSpreadsheetResponseService;
+import com.bbva.hitss.directorio.Services.SpreadsheetDataService.Statements;
 import com.bbva.hitss.directorio.Models.ColaboradorModel;
 import com.bbva.hitss.directorio.Utils.Utils;
-import com.bbva.hitss.directorio.init.Init;
+import com.bbva.hitss.directorio.init.MainApp;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +47,7 @@ public class ColaboradoresController extends AppCompatActivity implements Search
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.colaboradores_);
+        setContentView(R.layout.colaborador_list_view);
         bg_loader = (ProgressBar) findViewById(R.id.bg_loader);
         setToolbar();// Añadir la Toolbar
         // Obtener el Recycler
@@ -64,7 +63,7 @@ public class ColaboradoresController extends AppCompatActivity implements Search
 
     public void execute() {
         bg_loader.setVisibility(View.VISIBLE);
-        new GoogleSpreadsheetResponse(new AsyncResult() {
+        new GoogleSpreadsheetResponseService(new AsyncResultService() {
             @Override
             public void onResult(JSONObject object) {
                 if (object.toString().equalsIgnoreCase("{}")) {
@@ -75,7 +74,7 @@ public class ColaboradoresController extends AppCompatActivity implements Search
                     bg_loader.setVisibility(View.INVISIBLE);
                 }
             }
-        }).execute(StatementsSQL.selectAll);
+        }).execute(Statements.selectAll);
     }
 
     private void processJson(JSONObject object) {
@@ -150,7 +149,7 @@ public class ColaboradoresController extends AppCompatActivity implements Search
                 execute();
                 return true;
             case R.id.action_settings:
-                Intent intent = new Intent(ColaboradoresController.this, Init.class);
+                Intent intent = new Intent(ColaboradoresController.this, MainApp.class);
                 startActivity(intent);
                 return true;
         }

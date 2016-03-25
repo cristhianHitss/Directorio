@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import com.bbva.R;
 import com.bbva.hitss.directorio.Utils.Utils;
-import com.bbva.hitss.directorio.init.Init;
+import com.bbva.hitss.directorio.init.MainApp;
 import com.google.android.gms.common.AccountPicker;
 
 public class LoginController extends AppCompatActivity {
@@ -47,7 +47,7 @@ public class LoginController extends AppCompatActivity {
                 Snackbar snackbar= Snackbar.make(getView(),"INICIANDO SESION",Snackbar.LENGTH_SHORT);
                 snackbar.show();
                 progressBar.setVisibility(View.INVISIBLE);
-                Intent intent = new Intent(LoginController.this, Init.class);
+                Intent intent = new Intent(LoginController.this, MainApp.class);
                 startActivity(intent);
 
             } else {
