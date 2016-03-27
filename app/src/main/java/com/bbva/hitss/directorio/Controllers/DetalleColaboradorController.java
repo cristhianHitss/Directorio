@@ -285,7 +285,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
                     public void onClick(View v) {
                         boolean insert = PhoneUtils.insertContact(DetalleColaboradorController.this, name, celular + "");
                         if (insert) {
-                            ToastController.showSimple(DetalleColaboradorController.this, " Contacto Agregado Exitosamente", Toast.LENGTH_LONG);
+                            ToastController.showSimple(DetalleColaboradorController.this, " Contacto Agregado Exitosamente", Toast.LENGTH_SHORT);
                             fab.setVisibility(View.GONE);
                         } else {
                             ToastController.showSimple(DetalleColaboradorController.this, " Error inesperado", Toast.LENGTH_LONG);

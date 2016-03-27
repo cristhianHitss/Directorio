@@ -295,7 +295,7 @@ public class PhoneUtils {
             clipboard.setPrimaryClip(clip);
         }
         if(toast!=null) {
-            ToastController.showSimple(activity, toast, Toast.LENGTH_LONG);}
+            ToastController.showSimple(activity, toast, Toast.LENGTH_SHORT);}
 
         Utils.log(TAG, "Texto copiado al portapapeles: '" + text + "'");
     }
