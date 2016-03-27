@@ -1,11 +1,14 @@
 package com.bbva.hitss.directorio.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.bbva.R;
 
 /**
  * Created by Hitss on 10/03/2016.
  */
-public class ColaboradorModel {
+public  class ColaboradorModel implements Parcelable {
     private int id;
     private int no_empleado;
     private String nombre;
@@ -49,10 +52,66 @@ public class ColaboradorModel {
         this.idDrawable = getDrawable();
     }
 
-    public ColaboradorModel(String name, int idDrawable) {
-        this.nombre = name;
-        this.idDrawable = idDrawable;
+    public ColaboradorModel(Parcel parcel) {
+        this.setId(parcel.readInt());
+        this.setNo_empleado(parcel.readInt());
+        this.setPerfil(parcel.readString());
+        this.setApellido_paterno(parcel.readString());
+        this.setApelido_materno(parcel.readString());
+        this.setUsuarioxm(parcel.readString());
+        this.setCorreobbva(parcel.readString());
+        this.setArea_laboral(parcel.readString());
+        this.nombre = parcel.readString();
+        this.setUbicacion(parcel.readString());
+        this.setEdificio(parcel.readString());
+        this.setCelular_personal(parcel.readLong());
+        this.setCorreo_personal(parcel.readString());
+        this.setProyecto_asignado(parcel.readString());
+        this.setExpertise(parcel.readString());
+        this.setPrimer_nivel(parcel.readInt());
+        this.setSegundo_nivel(parcel.readInt());
+        this.setTercer_nivel(parcel.readInt());
+        this.idDrawable = getDrawable();
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeInt(no_empleado);
+        dest.writeString(perfil);
+        dest.writeString(apellido_paterno);
+        dest.writeString(apelido_materno);
+        dest.writeString(usuarioxm);
+        dest.writeString(correobbva);
+        dest.writeString(area_laboral);
+        dest.writeString(nombre);
+        dest.writeString(ubicacion);
+        dest.writeString(edificio);
+        dest.writeLong(celular_personal);
+        dest.writeString(correo_personal);
+        dest.writeString(proyecto_asignado);
+        dest.writeString(expertise);
+        dest.writeInt(primer_nivel);
+        dest.writeInt(segundo_nivel);
+        dest.writeInt(tercer_nivel);
+    }
+
+    public static final Creator<ColaboradorModel> CREATOR = new Creator<ColaboradorModel>() {
+        @Override
+        public ColaboradorModel[] newArray(int size) {
+            return new ColaboradorModel[size];
+        }
+
+        @Override
+        public ColaboradorModel createFromParcel(Parcel source) {
+            return new ColaboradorModel(source);
+        }
+    };
 
     public int getPrimer_nivel() {
         return primer_nivel;

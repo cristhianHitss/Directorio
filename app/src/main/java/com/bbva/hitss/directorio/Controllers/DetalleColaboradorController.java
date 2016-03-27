@@ -72,24 +72,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     private TextView description3;
     private ImageView send_message;
     private ImageView send_whatsapp;
-    private static final String EXTRA_NAME = "com.bbva.hitss.name";
-    private static final String EXTRA_APELLIDO_PATERNO = "com.bbva.hitss.paterno";
-    private static final String EXTRA_APELLIDO_MATERNO = "com.bbva.hitss.materno";
-    private static final String EXTRA_EDIFICIO = "com.bbva.hitss.edificio";
-    private static final String EXTRA_UBICACION = "com.bbva.hitss.ubicacion";
-    private static final String EXTRA_USUARIO_XM = "com.bbva.hitss.xm";
-    private static final String EXTRA_PERFIL = "com.bbva.hitss.perfil";
-    private static final String EXTRA_NO_EMPLEADO = "com.bbva.hitss.no_empleado";
-    private static final String EXTRA_AREA_LABORAL = "com.bbva.hitss.area_laboral";
-    private static final String EXTRA_CELULAR_PERSONAL = "com.bbva.hitss.celular_personal";
-    private static final String EXTRA_CORREO_BBVA = "com.bbva.hitss.correo_bbva";
-    private static final String EXTRA_CORREO_PERSONAL = "com.bbva.hitss.correo_personal";
-    private static final String EXTRA_PROYECTO_ASIGNADO = "com.bbva.hitss.proyecto_asignado";
-    private static final String EXTRA_EXPERTISE = "com.bbva.hitss.expertise";
-    private static final String EXTRA_PRIMER_NIVEL = "com.bbva.hitss.primer_nivel";
-    private static final String EXTRA_SEGUNDO_NIVEL = "com.bbva.hitss.segundo_nivel";
-    private static final String EXTRA_TERCER_NIVEL = "com.bbva.hitss.tercer_nivel";
-    private static final String EXTRA_DRAWABLE = "com.bbva.hitss.drawable";
+    private static final String EXTRA_NAME = "com.bbva.hitss";
     private LinearLayout content_view;
     private RelativeLayout make_call;
     private RelativeLayout mail_work;
@@ -100,6 +83,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     private View matriz_view;
     private ProgressBar pgr_internos;
     private InternosModel internosModel;
+    private ColaboradorModel getInternosModel;
     FloatingActionButton fab;
 
     public static void createInstance(Activity activity, ColaboradorModel colaborador) {
@@ -109,23 +93,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
 
     public static Intent getLaunchIntent(Context context, ColaboradorModel colaboradorModel) {
         Intent intent = new Intent(context, DetalleColaboradorController.class);
-        intent.putExtra(EXTRA_NAME, colaboradorModel.getName());
-        intent.putExtra(EXTRA_APELLIDO_PATERNO, colaboradorModel.getApellido_paterno());
-        intent.putExtra(EXTRA_APELLIDO_MATERNO, colaboradorModel.getApelido_materno());
-        intent.putExtra(EXTRA_USUARIO_XM, colaboradorModel.getUsuarioxm());
-        intent.putExtra(EXTRA_PERFIL, colaboradorModel.getPerfil());
-        intent.putExtra(EXTRA_NO_EMPLEADO, colaboradorModel.getNo_empleado());
-        intent.putExtra(EXTRA_EDIFICIO, colaboradorModel.getEdificio());
-        intent.putExtra(EXTRA_UBICACION, colaboradorModel.getUbicacion());
-        intent.putExtra(EXTRA_AREA_LABORAL, colaboradorModel.getArea_laboral());
-        intent.putExtra(EXTRA_CELULAR_PERSONAL, colaboradorModel.getCelular_personal());
-        intent.putExtra(EXTRA_CORREO_BBVA, colaboradorModel.getCorreobbva());
-        intent.putExtra(EXTRA_CORREO_PERSONAL, colaboradorModel.getCorreo_personal());
-        intent.putExtra(EXTRA_PROYECTO_ASIGNADO, colaboradorModel.getProyecto_asignado());
-        intent.putExtra(EXTRA_EXPERTISE, colaboradorModel.getExpertise());
-        intent.putExtra(EXTRA_PRIMER_NIVEL, colaboradorModel.getPrimer_nivel());
-        intent.putExtra(EXTRA_SEGUNDO_NIVEL, colaboradorModel.getSegundo_nivel());
-        intent.putExtra(EXTRA_TERCER_NIVEL, colaboradorModel.getTercer_nivel());
+        intent.putExtra(EXTRA_NAME, colaboradorModel);
         return intent;
     }
 
@@ -137,7 +105,8 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setfields();
-        setdata(getIntent());
+        getInternosModel = (ColaboradorModel) getIntent().getExtras().getParcelable(EXTRA_NAME);
+        setdata(getInternosModel);
         setupTabs();
         tabfunction();
         getInternos();
@@ -252,9 +221,9 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
         mail_personal = (RelativeLayout) contact.findViewById(R.id.mail_personal);
     }
 
-    private void setdata(Intent i) {
+    private void setdata(ColaboradorModel i) {
         fab = (FloatingActionButton) findViewById(R.id.btnCreate);
-        final Long celular = i.getLongExtra(EXTRA_CELULAR_PERSONAL, 0);
+        final Long celular = i.getCelular_personal();
         boolean exist = PhoneUtils.isNumberInContacts(DetalleColaboradorController.this, celular + "");
         if (exist) {
             fab.setVisibility(View.GONE);
@@ -266,19 +235,19 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
                 .centerCrop()
                 .transform(new CircleTransformation())
                 .into(ivUserProfilePhoto);
-        final String name = i.getStringExtra(EXTRA_NAME) + " " + i.getStringExtra(EXTRA_APELLIDO_PATERNO) + " " + i.getStringExtra(EXTRA_APELLIDO_MATERNO);
+        final String name = i.getName() + " " + i.getApellido_paterno() + " " + i.getApelido_materno();
         user_name.setText(name);
-        usuario_xm.setText(i.getStringExtra(EXTRA_USUARIO_XM));
-        no_empleado.setText(i.getIntExtra(EXTRA_NO_EMPLEADO, 0) + "");
-        ubicacion.setText(i.getStringExtra(EXTRA_EDIFICIO) + "  -  " + i.getStringExtra(EXTRA_UBICACION));
-        area_laboral.setText(i.getStringExtra(EXTRA_AREA_LABORAL));
-        celular_personal.setText(i.getLongExtra(EXTRA_CELULAR_PERSONAL, 0) + "");
-        list_titlea.setText(i.getStringExtra(EXTRA_CORREO_BBVA));
-        final String corre_bbva = i.getStringExtra(EXTRA_CORREO_BBVA);
-        final String corre_personal = i.getStringExtra(EXTRA_CORREO_PERSONAL);
-        list_titleb.setText(i.getStringExtra(EXTRA_CORREO_PERSONAL));
-        list_titlebb.setText(i.getStringExtra(EXTRA_PROYECTO_ASIGNADO));
-        list_title.setText(i.getStringExtra(EXTRA_EXPERTISE));
+        usuario_xm.setText(i.getUsuarioxm());
+        no_empleado.setText(i.getNo_empleado() + "");
+        ubicacion.setText(i.getEdificio() + "  -  " + i.getUbicacion());
+        area_laboral.setText(i.getArea_laboral());
+        celular_personal.setText(i.getCelular_personal() + "");
+        list_titlea.setText(i.getCorreobbva());
+        final String corre_bbva = i.getCorreobbva();
+        final String corre_personal = i.getCorreo_personal();
+        list_titleb.setText(corre_personal);
+        list_titlebb.setText(i.getProyecto_asignado());
+        list_title.setText(i.getExpertise());
         fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -417,9 +386,9 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     }
 
     private void setdatainternos(List<InternosModel> internosModels) {
-        int er_niv = getIntent().getIntExtra(EXTRA_PRIMER_NIVEL, 0);
-        int seg_niv = getIntent().getIntExtra(EXTRA_SEGUNDO_NIVEL, 0);
-        int ter_niv = getIntent().getIntExtra(EXTRA_TERCER_NIVEL, 0);
+        int er_niv = getInternosModel.getPrimer_nivel();
+        int seg_niv = getInternosModel.getSegundo_nivel();
+        int ter_niv = getInternosModel.getTercer_nivel();
         for (InternosModel model : internosModels) {
             if (model.getId() == er_niv) {
                 name_interno1.setText(model.getNombre() + " " + model.getApellido_paterno() + " " + model.getApellido_materno());
