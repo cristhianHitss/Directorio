@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,6 +41,7 @@ public class ColaboradoresController extends AppCompatActivity implements Search
     private ProgressBar bg_loader;
     Snackbar snackbar;
     private RecyclerView recycler;
+    private SwipeRefreshLayout refreshLayout;
     private LinearLayoutManager lManager;
     private CollapsingToolbarLayout collapser;
     List<ColaboradorModel> items;
@@ -52,13 +54,21 @@ public class ColaboradoresController extends AppCompatActivity implements Search
         setToolbar();// Añadir la Toolbar
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
-        recycler.setHasFixedSize(true);
-
         // Usar un administrador para LinearLayout
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
-
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
         execute();
+        refreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        execute();
+                        refreshLayout.setRefreshing(false);
+                    }
+                }
+        );
+
     }
 
     public void execute() {
@@ -145,9 +155,6 @@ public class ColaboradoresController extends AppCompatActivity implements Search
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_add:
-                execute();
-                return true;
             case R.id.action_settings:
                 Intent intent = new Intent(ColaboradoresController.this, MainApp.class);
                 startActivity(intent);
@@ -157,16 +164,7 @@ public class ColaboradoresController extends AppCompatActivity implements Search
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Proyecta una {@link Snackbar} con el string usado
-     *
-     * @param msg Mensaje
-     */
-    private void showSnackBar(String msg) {
-        Snackbar
-                .make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_LONG)
-                .show();
-    }
+
 
     private void showSnackBarAction(String msg) {
         snackbar = Snackbar.make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_INDEFINITE)

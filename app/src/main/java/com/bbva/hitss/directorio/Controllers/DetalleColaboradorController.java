@@ -91,7 +91,6 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     private static final String EXTRA_TERCER_NIVEL = "com.bbva.hitss.tercer_nivel";
     private static final String EXTRA_DRAWABLE = "com.bbva.hitss.drawable";
     private LinearLayout content_view;
-
     private RelativeLayout make_call;
     private RelativeLayout mail_work;
     private RelativeLayout mail_personal;
@@ -101,28 +100,13 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     private View matriz_view;
     private ProgressBar pgr_internos;
     private InternosModel internosModel;
-    private InternosModel nivel2 = new InternosModel();
-    private InternosModel nivel3 = new InternosModel();
+    FloatingActionButton fab;
 
-    /**
-     * Inicia una nueva instancia de la actividad
-     *
-     * @param activity Contexto desde donde se lanzará
-     * @param title    Item a procesar
-     */
-    public static void createInstance(Activity activity, ColaboradorModel title) {
-        Intent intent = getLaunchIntent(activity, title);
+    public static void createInstance(Activity activity, ColaboradorModel colaborador) {
+        Intent intent = getLaunchIntent(activity, colaborador);
         activity.startActivity(intent);
     }
 
-    /**
-     * Construye un Intent a partir del contexto y la actividad
-     * de detalle.
-     *
-     * @param context          Contexto donde se inicia
-     * @param colaboradorModel Identificador de la chica
-     * @return Intent listo para usar
-     */
     public static Intent getLaunchIntent(Context context, ColaboradorModel colaboradorModel) {
         Intent intent = new Intent(context, DetalleColaboradorController.class);
         intent.putExtra(EXTRA_NAME, colaboradorModel.getName());
@@ -149,31 +133,19 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colaborador_detalle_view);
-        setToolbar();// Añadir action bar
-        if (getSupportActionBar() != null) // Habilitar up button
+        setToolbar();
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setfields(); //se vinculan las fields
-        setdata(getIntent()); //se inserta la informacion dentro de los fields correspondientes
-        setupTabs(); // se agreagan las tabs dentro de la vista
-        tabfunction();//se añade la funcion de las tabs
+        setfields();
+        setdata(getIntent());
+        setupTabs();
+        tabfunction();
         getInternos();
     }
 
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    }
-
-
-    /**
-     * Proyecta una {@link Snackbar} con el string usado
-     *
-     * @param msg Mensaje
-     */
-    private void showSnackBar(String msg) {
-        Snackbar
-                .make(findViewById(R.id.coordinator), msg, Snackbar.LENGTH_LONG)
-                .show();
     }
 
     public void getInternos() {
@@ -244,13 +216,6 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     }
 
 
-    private int datadisplay() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int density = metrics.densityDpi;
-        return density;
-    }
-
     private void setfields() {
         usuario_xm = (TextView) findViewById(R.id.usuario_xm);
         no_empleado = (TextView) findViewById(R.id.no_empleado);
@@ -288,6 +253,12 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
     }
 
     private void setdata(Intent i) {
+        fab = (FloatingActionButton) findViewById(R.id.btnCreate);
+        final Long celular = i.getLongExtra(EXTRA_CELULAR_PERSONAL, 0);
+        boolean exist = PhoneUtils.isNumberInContacts(DetalleColaboradorController.this, celular + "");
+        if (exist) {
+            fab.setVisibility(View.GONE);
+        }
         Picasso.with(this)
                 .load(profilePhoto)
                 .placeholder(R.drawable.ic_login_account)
@@ -303,28 +274,23 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
         area_laboral.setText(i.getStringExtra(EXTRA_AREA_LABORAL));
         celular_personal.setText(i.getLongExtra(EXTRA_CELULAR_PERSONAL, 0) + "");
         list_titlea.setText(i.getStringExtra(EXTRA_CORREO_BBVA));
-        final Long celular = i.getLongExtra(EXTRA_CELULAR_PERSONAL, 0);
         final String corre_bbva = i.getStringExtra(EXTRA_CORREO_BBVA);
         final String corre_personal = i.getStringExtra(EXTRA_CORREO_PERSONAL);
         list_titleb.setText(i.getStringExtra(EXTRA_CORREO_PERSONAL));
         list_titlebb.setText(i.getStringExtra(EXTRA_PROYECTO_ASIGNADO));
         list_title.setText(i.getStringExtra(EXTRA_EXPERTISE));
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnCreate);
         fab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean exist = PhoneUtils.isNumberInContacts(DetalleColaboradorController.this, celular + "");
-                        if (exist) {
-                            ToastController.showSimple(DetalleColaboradorController.this, " Ya tienes este contacto", Toast.LENGTH_LONG);
+                        boolean insert = PhoneUtils.insertContact(DetalleColaboradorController.this, name, celular + "");
+                        if (insert) {
+                            ToastController.showSimple(DetalleColaboradorController.this, " Contacto Agregado Exitosamente", Toast.LENGTH_LONG);
+                            fab.setVisibility(View.GONE);
                         } else {
-                            boolean insert = PhoneUtils.insertContact(DetalleColaboradorController.this, name, celular + "");
-                            if (insert) {
-                                ToastController.showSimple(DetalleColaboradorController.this, " Contacto Agregado Exitosamente", Toast.LENGTH_LONG);
-                            } else {
-                                ToastController.showSimple(DetalleColaboradorController.this, " Error inesperado", Toast.LENGTH_LONG);
-                            }
+                            ToastController.showSimple(DetalleColaboradorController.this, " Error inesperado", Toast.LENGTH_LONG);
                         }
+
                     }
                 }
         );
@@ -415,7 +381,7 @@ public class DetalleColaboradorController extends AppCompatActivity implements R
             }
         });
         tlUserProfileTabs.setVisibility(View.VISIBLE);
-        if (datadisplay() == 240) {
+        if (Utils.datascreendisplay(getWindowManager()) == 240) {
             contentphone.setVisibility(View.GONE);
             header_containerv.setOnClickListener(new View.OnClickListener() {
                 @Override

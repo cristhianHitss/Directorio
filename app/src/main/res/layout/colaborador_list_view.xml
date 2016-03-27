@@ -9,15 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--Objeto Con Scroll -->
-        <android.support.v7.widget.RecyclerView
-            android:background="#ECEFF1"
-            android:id="@+id/reciclador"
+
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:layout_below="@+id/coordinator"
-            android:scrollbars="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:layout_height="match_parent"
+            android:paddingTop="?attr/actionBarSize">
+
+            <!--Objeto Con Scroll -->
+            <android.support.v7.widget.RecyclerView
+                android:background="#ECEFF1"
+                android:id="@+id/reciclador"
+                android:layout_below="@+id/coordinator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
         <!-- App Bar -->
         <android.support.design.widget.AppBarLayout
@@ -32,7 +43,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="#014a7e"
                 android:titleTextColor="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 

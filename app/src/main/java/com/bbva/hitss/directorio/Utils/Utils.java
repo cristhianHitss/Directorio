@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
@@ -74,5 +75,11 @@ public class Utils {
         }
 
         return screenWidth;
+    }
+    public static int datascreendisplay(WindowManager windowManager) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        int density = metrics.densityDpi;
+        return density;
     }
 }
