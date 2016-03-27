@@ -20,7 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.bbva.R;
 import com.bbva.hitss.directorio.Adapters.ColaboradoresAdapter;
 import com.bbva.hitss.directorio.Services.Google.AsyncResultService;
@@ -29,11 +28,9 @@ import com.bbva.hitss.directorio.Services.SpreadsheetDataService.Statements;
 import com.bbva.hitss.directorio.Models.ColaboradorModel;
 import com.bbva.hitss.directorio.Utils.Utils;
 import com.bbva.hitss.directorio.init.MainApp;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,27 +91,27 @@ public class ColaboradoresController extends AppCompatActivity implements Search
             for (int r = 0; r < rows.length(); ++r) {
                 JSONObject row = rows.getJSONObject(r);
                 JSONArray columns = row.getJSONArray("c");
-                int id = columns.getJSONObject(0).getInt("v");
-                int no_empleado = columns.getJSONObject(1).getInt("v");
-                String nombre = columns.getJSONObject(2).getString("v");
-                String apellido_paterno = columns.getJSONObject(3).getString("v");
-                String apellido_materno = columns.getJSONObject(4).getString("v");
-                String usuarioxm = columns.getJSONObject(5).getString("v");
-                String correobbva = columns.getJSONObject(6).getString("v");
-                String ubicacion = columns.getJSONObject(7).getString("v");
-                String edificio = columns.getJSONObject(8).getString("v");
-                Long celular_personal = columns.getJSONObject(12).getLong("v");
-                String area_laboral = columns.getJSONObject(13).getString("v");
-                String perfil = columns.getJSONObject(16).getString("v");
-                String corre_personal = columns.getJSONObject(11).getString("v");
-                String proyecto_asignado = columns.getJSONObject(14).getString("v");
-                String expertise = columns.getJSONObject(15).getString("v");
-                int primer_nivel = columns.getJSONObject(17).getInt("v");
-                int segundo_nivel = columns.getJSONObject(18).getInt("v");
-                int tercer_nivel = columns.getJSONObject(19).getInt("v");
-                ColaboradorModel m = new ColaboradorModel(id, no_empleado, nombre, apellido_paterno, apellido_materno, usuarioxm, correobbva, edificio, ubicacion, area_laboral, perfil, celular_personal, corre_personal, proyecto_asignado, expertise, primer_nivel, segundo_nivel, tercer_nivel);
-                items.add(m);
-                Utils.log("COLABORADOR INFO", id + " " + no_empleado + " " + nombre + " " + apellido_paterno + " " + apellido_materno + " " + usuarioxm + " " + correobbva + " " + ubicacion + " " + edificio + " " + perfil + " " + celular_personal);
+                ColaboradorModel colaboradorModel = new ColaboradorModel();
+                colaboradorModel.setId(columns.getJSONObject(0).getInt("v"));
+                colaboradorModel.setNo_empleado(columns.getJSONObject(1).getInt("v"));
+                colaboradorModel.setName(columns.getJSONObject(2).getString("v"));
+                colaboradorModel.setApellido_paterno(columns.getJSONObject(3).getString("v"));
+                colaboradorModel.setApelido_materno(columns.getJSONObject(4).getString("v"));
+                colaboradorModel.setUsuarioxm(columns.getJSONObject(5).getString("v"));
+                colaboradorModel.setCorreobbva(columns.getJSONObject(6).getString("v"));
+                colaboradorModel.setUbicacion(columns.getJSONObject(7).getString("v"));
+                colaboradorModel.setEdificio(columns.getJSONObject(8).getString("v"));
+                colaboradorModel.setCelular_personal(columns.getJSONObject(12).getLong("v"));
+                colaboradorModel.setArea_laboral(columns.getJSONObject(13).getString("v"));
+                colaboradorModel.setPerfil(columns.getJSONObject(16).getString("v"));
+                colaboradorModel.setCorreo_personal(columns.getJSONObject(11).getString("v"));
+                colaboradorModel.setProyecto_asignado(columns.getJSONObject(14).getString("v"));
+                colaboradorModel.setExpertise(columns.getJSONObject(15).getString("v"));
+                colaboradorModel.setPrimer_nivel(columns.getJSONObject(17).getInt("v"));
+                colaboradorModel.setSegundo_nivel(columns.getJSONObject(18).getInt("v"));
+                colaboradorModel.setTercer_nivel(columns.getJSONObject(19).getInt("v"));
+                items.add(colaboradorModel);
+                Utils.log("COLABORADOR INFO", colaboradorModel.toString());
             }
             ColaboradoresAdapter adaptador = new ColaboradoresAdapter(this, new ArrayList<>(items));
             recycler.setAdapter(adaptador);
@@ -163,7 +160,6 @@ public class ColaboradoresController extends AppCompatActivity implements Search
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     private void showSnackBarAction(String msg) {

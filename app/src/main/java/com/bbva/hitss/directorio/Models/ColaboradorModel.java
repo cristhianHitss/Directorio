@@ -8,7 +8,7 @@ import com.bbva.R;
 /**
  * Created by Hitss on 10/03/2016.
  */
-public  class ColaboradorModel implements Parcelable {
+public class ColaboradorModel implements Parcelable {
     private int id;
     private int no_empleado;
     private String nombre;
@@ -30,47 +30,28 @@ public  class ColaboradorModel implements Parcelable {
     private int segundo_nivel;
     private int tercer_nivel;
 
-    public ColaboradorModel(int id, int no_empleado, String name, String apellido_paterno, String apelido_materno, String usuarioxm, String correobbva, String edificio, String ubicacion, String area_laboral, String perfil, long celular_personal, String correo_personal, String proyecto_asignado, String expertise, int primer_nivel, int segundo_nivel, int tercer_nivel) {
-        this.setId(id);
-        this.setNo_empleado(no_empleado);
-        this.setPerfil(perfil);
-        this.setApellido_paterno(apellido_paterno);
-        this.setApelido_materno(apelido_materno);
-        this.setUsuarioxm(usuarioxm);
-        this.setCorreobbva(correobbva);
-        this.setArea_laboral(area_laboral);
-        this.nombre = name;
-        this.setUbicacion(ubicacion);
-        this.setEdificio(edificio);
-        this.setCelular_personal(celular_personal);
-        this.setCorreo_personal(correo_personal);
-        this.setProyecto_asignado(proyecto_asignado);
-        this.setExpertise(expertise);
-        this.setPrimer_nivel(primer_nivel);
-        this.setSegundo_nivel(segundo_nivel);
-        this.setTercer_nivel(tercer_nivel);
-        this.idDrawable = getDrawable();
+    public ColaboradorModel() {
     }
 
     public ColaboradorModel(Parcel parcel) {
-        this.setId(parcel.readInt());
-        this.setNo_empleado(parcel.readInt());
-        this.setPerfil(parcel.readString());
-        this.setApellido_paterno(parcel.readString());
-        this.setApelido_materno(parcel.readString());
-        this.setUsuarioxm(parcel.readString());
-        this.setCorreobbva(parcel.readString());
-        this.setArea_laboral(parcel.readString());
-        this.nombre = parcel.readString();
-        this.setUbicacion(parcel.readString());
-        this.setEdificio(parcel.readString());
-        this.setCelular_personal(parcel.readLong());
-        this.setCorreo_personal(parcel.readString());
-        this.setProyecto_asignado(parcel.readString());
-        this.setExpertise(parcel.readString());
-        this.setPrimer_nivel(parcel.readInt());
-        this.setSegundo_nivel(parcel.readInt());
-        this.setTercer_nivel(parcel.readInt());
+        id = parcel.readInt();
+        no_empleado = parcel.readInt();
+        perfil = parcel.readString();
+        apellido_paterno = parcel.readString();
+        apelido_materno = parcel.readString();
+        usuarioxm = parcel.readString();
+        correobbva = parcel.readString();
+        area_laboral = parcel.readString();
+        nombre = parcel.readString();
+        ubicacion = parcel.readString();
+        edificio = parcel.readString();
+        celular_personal = parcel.readLong();
+        correo_personal = parcel.readString();
+        proyecto_asignado = parcel.readString();
+        expertise = parcel.readString();
+        primer_nivel = parcel.readInt();
+        segundo_nivel = parcel.readInt();
+        tercer_nivel = parcel.readInt();
         this.idDrawable = getDrawable();
     }
 
@@ -101,6 +82,7 @@ public  class ColaboradorModel implements Parcelable {
         dest.writeInt(tercer_nivel);
     }
 
+    @SuppressWarnings("unused")
     public static final Creator<ColaboradorModel> CREATOR = new Creator<ColaboradorModel>() {
         @Override
         public ColaboradorModel[] newArray(int size) {
@@ -253,6 +235,10 @@ public  class ColaboradorModel implements Parcelable {
 
     public String getName() {
         return nombre;
+    }
+
+    public void setName(String name) {
+        this.nombre = name;
     }
 
     public int getIdDrawable() {
